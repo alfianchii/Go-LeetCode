@@ -6,6 +6,10 @@ GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 GOFMT=$(GOCMD) fmt
 
+s0001:
+	@echo "🚀 Starting unit test..."
+	${GOTEST} ./problems/s0001_two_sum/ -v
+
 test:
 	@echo "🚀 Starting unit test..."
 	$(GOTEST) ./...
