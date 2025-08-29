@@ -20,7 +20,23 @@ type Answer struct {
 	Result []int
 }
 
+type Func struct {
+	Name   string
+	TwoSum func([]int, int) []int
+}
+
 func Test_Problem(t *testing.T) {
+	var funcs []Func = []Func{
+		{
+			Name:   "Quadratic",
+			TwoSum: twoSumQuadratic,
+		},
+		{
+			Name:   "Constant",
+			TwoSum: twoSumLinear,
+		},
+	}
+
 	var qs []Question = []Question{
 		{
 			Params{[]int{3, 2, 4}, 6},
@@ -36,19 +52,21 @@ func Test_Problem(t *testing.T) {
 		},
 	}
 
-	fmt.Printf("------------------------Leetcode Problem 1------------------------\n")
+	fmt.Printf("========================Leetcode Problem 1========================\n")
 
-	for _, q := range qs {
-		a, p := q.Answer, q.Params
+	for _, testFunc := range funcs {
+		fmt.Println("------------------" + testFunc.Name + "------------------")
+		for _, q := range qs {
+			a, p := q.Answer, q.Params
 
-		r := twoSum(p.nums, p.target)
-		isEqual := reflect.DeepEqual(a.Result, r)
+			var r []int = testFunc.TwoSum(p.nums, p.target)
+			var isEqual bool = reflect.DeepEqual(a.Result, r)
 
-		if isEqual {
-			fmt.Printf("【input】: %v\n【output】: %v\n\n", p, twoSum(p.nums, p.target))
-		} else {
-			t.Error("Failed of Two Sum problem...")
+			if isEqual {
+				fmt.Printf("【input】: %v\n【output】: %v\n\n", p, r)
+			} else {
+				t.Error("Failed of Two Sum (" + testFunc.Name + ") problem...")
+			}
 		}
 	}
-	fmt.Printf("\n\n\n")
 }
