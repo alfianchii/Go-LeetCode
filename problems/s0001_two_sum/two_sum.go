@@ -1,14 +1,10 @@
 package problems
 
 func twoSum(nums []int, target int) []int {
-	for idx, num := range nums {
-		if idx+1 < len(nums) {
-			nextIdx := idx + 1
-			nextItem := nums[nextIdx]
-
-			result := num + nextItem
-			if result == target {
-				return []int{idx, nextIdx}
+	for i := 0; i < len(nums); i++ {
+		for j := i + 1; j < len(nums); j++ {
+			if nums[i]+nums[j] == target {
+				return []int{i, j}
 			}
 		}
 	}
