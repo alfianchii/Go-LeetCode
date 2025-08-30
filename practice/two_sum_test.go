@@ -1,4 +1,4 @@
-package problems
+package practice
 
 import (
 	"fmt"
@@ -28,12 +28,12 @@ type Func struct {
 func TestProblem(t *testing.T) {
 	var funcs []Func = []Func{
 		{
-			Name:   "Quadratic",
-			TwoSum: twoSumQuadratic,
+			"Quadratic",
+			twoSumQuadratic,
 		},
 		{
-			Name:   "Constant",
-			TwoSum: twoSumLinear,
+			"Linear",
+			twoSumLinear,
 		},
 	}
 
@@ -53,11 +53,10 @@ func TestProblem(t *testing.T) {
 	}
 
 	fmt.Printf("========================Leetcode Problem 1========================\n")
-
 	for _, testFunc := range funcs {
 		fmt.Println("------------------" + testFunc.Name + "------------------")
 		for _, q := range qs {
-			a, p := q.Answer, q.Params
+			p, a := q.Params, q.Answer
 
 			var r []int = testFunc.TwoSum(p.nums, p.target)
 			var isEqual bool = reflect.DeepEqual(a.Result, r)

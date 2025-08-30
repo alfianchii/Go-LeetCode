@@ -10,6 +10,10 @@ s0001:
 	@echo "🚀 Starting unit test..."
 	${GOTEST} ./problems/s0001_two_sum/ -v
 
+learn:
+	@echo "🚀 Starting unit test..."
+	${GOTEST} ./practice/ -v
+
 test:
 	@echo "🚀 Starting unit test..."
 	$(GOTEST) ./...
